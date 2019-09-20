@@ -1,20 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div>
+    <form #myForm="ngForm">
+        <h1>Cadastro de Veículo</h1>
+        <div>
+            <label for="tipo">Tipo: </label>
+            <input type="text" name="tipo" [(ngModel)]="veiculo.tipo" required #tipo="ngModel">
+            <span class="error" *ngIf="tipo.invalid && tipo.dirty">Campo Inválido</span>
+        </div>
+        <div>
+            <label for="marca">Marca: </label>
+            <input type="text" name="marca" [(ngModel)]="veiculo.marca" required #marca="ngModel">
+            <span class="error" *ngIf="marca.invalid && marca.dirty">Campo Inválido</span>
+        </div>
+        <div>
+            <label for="modelo">Modelo: </label>
+            <input type="text" name="modelo" [(ngModel)]="veiculo.modelo" required #modelo="ngModel">
+            <span class="error" *ngIf="modelo.invalid && modelo.dirty">Campo Inválido</span>
+        </div>
+        <div>
+            <label for="cor">Cor: </label>
+            <input type="text" name="cor" [(ngModel)]="veiculo.cor" required #cor="ngModel">
+            <span class="error" *ngIf="cor.invalid && cor.dirty">Campo Inválido</span>
+        </div>
+        <div>
+            <label for="ano">Ano: </label>
+            <input type="number" name="ano" [(ngModel)]="veiculo.ano" required #ano="ngModel">
+            <span class="error" *ngIf="ano.invalid && ano.dirty">Campo Inválido</span>
+        </div>
 
+        <div>
+            <input type="button" value="Salvar" [disabled]="myForm.invalid" (click)="salvarVeiculo()">
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <th>Tipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Cor</th>
+            <th>Ano</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let veiculo of veiculos" [ngClass]="{'moto':veiculo.tipo === 'moto',
+            'carro':veiculo.tipo === 'carro'}">
+                <td>{{veiculo.tipo}}</td>
+                <td>{{veiculo.marca}}</td>
+                <td>{{veiculo.modelo}}</td>
+                <td>{{veiculo.cor}}</td>
+                <td>{{veiculo.ano}}</td>
+                <td><input type="button" value="Editar" (click)="editarVeiculo(veiculo)"></td>
+                <td><input type="button" value="Remover" (click)="removerVeiculo(veiculo)"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

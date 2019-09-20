@@ -1,0 +1,33 @@
+div {
+    padding-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+th,
+td {
+    border: 1px solid black;
+}
+
+.error {
+    color: red;
+}
+
+.moto {
+    background-color: #33FF4F;
+}
+
+.carro {
+    background-color: #3368FF;
+}
